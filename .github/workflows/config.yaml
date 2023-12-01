@@ -23,4 +23,4 @@ jobs:
 
         - name: Push to Replicate
           run: |
-            cog push r8.im/benlin924/test4
+            cog push r8.im/benlin924/test5
