@@ -46,15 +46,15 @@ class Predictor(BasePredictor):
         #     variant="fp16",
         #     safety_checker= None
         # ).to("cuda")
-
-
-        self.pipe = StableDiffusionPipeline.from_ckpt(
-            "https://huggingface.co/stabilityai/stable-diffusion-2-1/blob/main/v2-1_768-ema-pruned.safetensors",
-            local_files_only=True,
-            torch_dtype=torch.float16,
-            safety_checker=None,
-            requires_safety_checker=False
-        ).to("cuda")
+        model_path = "https://huggingface.co/stabilityai/stable-diffusion-2-1/blob/main/v2-1_768-ema-pruned.safetensors"
+        self.pipe = StableDiffusionPipeline.from_single_file(model_path, torch_dtype=torch.float16, use_safetensors=True).to("cuda")
+        # self.pipe = StableDiffusionPipeline.from_ckpt(
+        #     model_path,
+        #     local_files_only=True,
+        #     torch_dtype=torch.float16,
+        #     safety_checker=None,
+        #     requires_safety_checker=False
+        # ).to("cuda")
 
     @torch.inference_mode()
     def predict(

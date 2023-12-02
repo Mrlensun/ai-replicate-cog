@@ -21,6 +21,8 @@ jobs:
           uses: AdityaGarg8/remove-unwanted-software@v1
           with:
             remove-android: 'true'
+            remove-dotnet: 'true'
+            remove-haskell: 'true'
 
         - name: Delete huge unnecessary tools folder
           run: rm -rf /opt/hostedtoolcache
