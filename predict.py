@@ -26,18 +26,18 @@ class Predictor(BasePredictor):
     def setup(self):
         """Load the model into memory to make running multiple predictions efficient"""
         print("Loading pipeline...")
-        # safety_checker = StableDiffusionSafetyChecker.from_pretrained(
-        #     SAFETY_MODEL_ID,
-        #     cache_dir=MODEL_CACHE,
-        #     local_files_only=True,
-        # )
-        #
-        # self.pipe = StableDiffusionPipeline.from_pretrained(
-        #     MODEL_ID,
-        #     safety_checker=safety_checker,
-        #     cache_dir=MODEL_CACHE,
-        #     local_files_only=True,
-        # ).to("cuda")
+        safety_checker = StableDiffusionSafetyChecker.from_pretrained(
+            SAFETY_MODEL_ID,
+            cache_dir=MODEL_CACHE,
+            local_files_only=True,
+        )
+
+        self.pipe = StableDiffusionPipeline.from_pretrained(
+            MODEL_ID,
+            safety_checker=safety_checker,
+            cache_dir=MODEL_CACHE,
+            local_files_only=True,
+        ).to("cuda")
 
         # self.pipe = StableDiffusionPipeline.from_single_file(
         #     "./768-v-ema.ckpt",
@@ -46,8 +46,8 @@ class Predictor(BasePredictor):
         #     variant="fp16",
         #     safety_checker= None
         # ).to("cuda")
-        model_path = "https://huggingface.co/stabilityai/stable-diffusion-2-1/blob/main/v2-1_768-ema-pruned.safetensors"
-        self.pipe = StableDiffusionPipeline.from_single_file(model_path, torch_dtype=torch.float16, use_safetensors=True).to("cuda")
+        #model_path = "https://huggingface.co/stabilityai/stable-diffusion-2-1/blob/main/v2-1_768-ema-pruned.safetensors"
+        #self.pipe = StableDiffusionPipeline.from_single_file(model_path, torch_dtype=torch.float16, use_safetensors=True).to("cuda")
         # self.pipe = StableDiffusionPipeline.from_ckpt(
         #     model_path,
         #     local_files_only=True,
