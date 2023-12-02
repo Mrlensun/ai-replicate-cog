@@ -10,15 +10,27 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: show disk and Delete huge unnecessary tools folder
-          run: |
-              (while true; do
-              df -h
-              sleep 15
-              done) & rm -rf /opt/hostedtoolcache
+#        - name: show disk and Delete huge unnecessary tools folder
+#          run: |
+#              (while true; do
+#              df -h
+#              sleep 15
+#              done) & rm -rf /opt/hostedtoolcache
 
-#        - name: Delete huge unnecessary tools folder
-#          run: rm -rf /opt/hostedtoolcache
+        - name: Maximize build space
+          uses: easimon/maximize-build-space@master
+          with:
+            root-reserve-mb: 512
+            swap-size-mb: 1024
+            remove-dotnet: 'true'
+
+        - name: Delete huge unnecessary tools folder
+          run: rm -rf /opt/hostedtoolcache
+
+        - name: Free space
+          run: |
+            echo "Free space:"
+            df -h
 
         - name: Check out code
           uses: actions/checkout@v3
