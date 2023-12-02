@@ -34,6 +34,9 @@ jobs:
             token: ${{ secrets.REPLICATE_API_TOKEN }}
             install-cuda: true
 
+        - name: permission
+          run: chmod  777 -R script/download-weights
+
         - name: Download weights
           run: cog run script/download-weights
 
