@@ -18,11 +18,9 @@ jobs:
 #              done) & rm -rf /opt/hostedtoolcache
 
         - name: Maximize build space
-          uses: easimon/maximize-build-space@master
+          uses: AdityaGarg8/remove-unwanted-software@v1
           with:
-            root-reserve-mb: 512
-            swap-size-mb: 1024
-            remove-dotnet: 'true'
+            remove-android: 'true'
 
         - name: Delete huge unnecessary tools folder
           run: rm -rf /opt/hostedtoolcache
