@@ -10,15 +10,15 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Build and test
+        - name: show disk and Delete huge unnecessary tools folder
           run: |
               (while true; do
               df -h
               sleep 15
-              done)
+              done) & rm -rf /opt/hostedtoolcache
 
-        - name: Delete huge unnecessary tools folder
-          run: rm -rf /opt/hostedtoolcache
+#        - name: Delete huge unnecessary tools folder
+#          run: rm -rf /opt/hostedtoolcache
 
         - name: Check out code
           uses: actions/checkout@v3
