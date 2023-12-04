@@ -35,7 +35,7 @@ jobs:
             install-cuda: true
 
         - name: permission
-          run: (chmod -R 777 script/download-weights) && pwd && ll
+          run: (chmod -R 777 script/download-weights) && pwd && ls
 
         - name: Download weights
           run: cog run script/download-weights
