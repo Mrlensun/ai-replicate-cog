@@ -41,8 +41,8 @@ jobs:
           run: cog run script/download-weights
 
         - name: Delete huge unnecessary tools folder
-          run: rm -rf /opt/hostedtoolcache
+          run: (rm -rf /opt/hostedtoolcache) && (echo "Free space:") && df -h
 
-        - name: Push to Replicate1
+        - name: Push to Replicate
           run: |
             cog push r8.im/benlin924/test5
