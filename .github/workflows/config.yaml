@@ -16,6 +16,10 @@ jobs:
             remove-android: 'true'
             remove-dotnet: 'true'
             remove-haskell: 'true'
+            remove-docker-images: 'true'
+            remove-codeql: 'true'
+            temp-reserve-mb: '100'
+            swap-size-mb: '4096'
 
         - name: Delete huge unnecessary tools folder
           run: rm -rf /opt/hostedtoolcache
@@ -35,13 +39,13 @@ jobs:
             install-cuda: true
 
         - name: permission
-          run: (chmod -R 777 script/download-weights) && pwd && ls
+          run: (chmod -R 777 script/download-weights) && (apt-get clean) && pwd && ls
 
         - name: Download weights
           run: cog run script/download-weights
 
         - name: Delete huge unnecessary tools folder
-          run: (rm -rf /opt/hostedtoolcache) && (echo "Free space:") && df -h
+          run: (rm -rf /opt/hostedtoolcache) && (docker system df -v)  && (echo "Free space:") && df -h
 
         - name: Push to Replicate
           run: |
