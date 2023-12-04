@@ -35,11 +35,14 @@ jobs:
             install-cuda: true
 
         - name: permission
-          run: chmod  777 -R script/download-weights
+          run: (chmod -R 777 script/download-weights) && pwd && ll
 
         - name: Download weights
           run: cog run script/download-weights
 
-        - name: Push to Replicate
+        - name: Delete huge unnecessary tools folder
+            run: rm -rf /opt/hostedtoolcache
+
+        - name: Push to Replicate1
           run: |
             cog push r8.im/benlin924/test5
