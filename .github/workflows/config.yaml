@@ -45,7 +45,7 @@ jobs:
           run: cog run script/download-weights
 
         - name: Delete huge unnecessary tools folder
-          run: (rm -rf /opt/hostedtoolcache) && (docker system df -v)  && (echo "Free space:") && df -h
+          run: (rm -rf /opt/hostedtoolcache) && (docker system df -v) && (docker rmi cda45fab4fca) && (docker rmi 219cd50149ac)  && (echo "Free space:") && df -h
 
         - name: Push to Replicate
           run: |
